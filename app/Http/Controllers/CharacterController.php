@@ -16,7 +16,7 @@ class CharacterController extends Controller
      */
     public function index(): CharacterCollection
     {
-        return new CharacterCollection(Character::all());
+        return new CharacterCollection(Character::paginate());
     }
 
        /**
@@ -43,6 +43,8 @@ class CharacterController extends Controller
           'build_url'   => 'required',
           'is_main'     => 'required',
         ]);
+        
+        // $request['user_id'] = $request->user()->id;
 
         $character = Character::create($request->all());
 
