@@ -46,12 +46,7 @@ class CharacterController extends Controller
         
         $request['user_id'] = $request->user()->id;
 
-        // dd($request->user()->id);
-        // dd($request->all());
-
         $character = Character::create($request->all());
-
-        // dd($character);
 
         return new CharacterResource($character);
     }
