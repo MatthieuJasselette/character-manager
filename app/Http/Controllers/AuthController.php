@@ -13,6 +13,7 @@ class AuthController extends Controller
             'name'      => $request->name,
             'email'     => $request->email,
             'password'  => $request->password,
+            'is_available' => $request->is_available
          ]);
 
         $token = auth()->login($user);
@@ -45,5 +46,21 @@ class AuthController extends Controller
             'token_type'   => 'bearer',
             'expires_in'   => auth()->factory()->getTTL() * 60
         ]);
+    }
+
+    public function show(User $user)
+    {
+        return $user;
+    }
+    public function update(Request $request, User $user)
+    {
+        $user->update($request->all());
+        
+        return $user;
+    }
+
+    public function __construct()
+    {
+      $this->middleware('auth:api')->except(['register', 'login']);
     }
 }
