@@ -78,4 +78,9 @@ class CharacterController extends Controller
 
         return response()->json();
     }
+
+    public function __construct()
+    {
+      $this->middleware('auth:api')->except(['index', 'show']);
+    }
 }
