@@ -40,7 +40,12 @@ class User extends Authenticatable implements JWTSubject
 
     public function character()
     {
-        return $this->hasMay(Character::class);
+        return $this->hasMany(Character::class);
+    }
+
+    public function mainCharacter()
+    {
+        return $this->hasMany(Character::class)->where('is_main', '=', 1);
     }
 
     public function getJWTIdentifier()

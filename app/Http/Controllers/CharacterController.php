@@ -19,7 +19,7 @@ class CharacterController extends Controller
         return new CharacterCollection(Character::paginate());
     }
 
-       /**
+    /**
      * Display the specified resource.
      *
      * @param  \App\Character  $character
