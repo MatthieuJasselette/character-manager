@@ -7,9 +7,10 @@ use Faker\Generator as Faker;
 
 $factory->define(Character::class, function (Faker $faker) {
     return [
-        'name' => $faker->firstName,
-        'description' => $faker->sentence($nbWords = 6, $variableNbWords = true),
-        'build_url' => $faker->url,
-        'is_main' => $faker->boolean
+        'user_id'       => $faker->numberBetween($min = 1, $max = 6),
+        'name'          => $faker->firstName,
+        'description'   => $faker->sentence($nbWords = 6, $variableNbWords = true),
+        'build_url'     => $faker->url,
+        'is_main'       => $faker->boolean
     ];
 });
