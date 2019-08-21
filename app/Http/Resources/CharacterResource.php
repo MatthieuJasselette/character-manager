@@ -14,6 +14,12 @@ class CharacterResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'user' => $this->user,
+            'name' => $this->name,
+            'description' => $this->description,
+            'build_url' => $this->build_url,
+            'is_main' => $this->is_main
+        ];
     }
 }
