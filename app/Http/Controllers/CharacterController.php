@@ -57,9 +57,11 @@ class CharacterController extends Controller
      * @param  \App\Character  $character
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Character $character)
+    public function update(Request $request, Character $character): CharacterResource
     {
-        //
+        $character->update($request->all());
+
+        return new CharacterResource($character);
     }
 
     /**
@@ -70,6 +72,8 @@ class CharacterController extends Controller
      */
     public function destroy(Character $character)
     {
-        //
+        $character->delete();
+
+        return response()->json();
     }
 }
