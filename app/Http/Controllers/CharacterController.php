@@ -25,9 +25,9 @@ class CharacterController extends Controller
      * @param  \App\Character  $character
      * @return \Illuminate\Http\Response
      */
-    public function show(Character $character)
+    public function show(Character $character): CharacterResource
     {
-        //
+        return new CharacterResource($character);
     }
 
     /**
@@ -36,9 +36,17 @@ class CharacterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): CharacterResource
     {
-        //
+        $request->validate([
+          'name'        => 'required',
+          'build_url'   => 'required',
+          'is_main'     => 'required',
+        ]);
+
+        $character = Character::create($request->all());
+
+        return new CharacterResource($character);
     }
 
 
