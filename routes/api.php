@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::prefix('v1')->group(function(){
     Route::apiResource('character', 'CharacterController');
+    Route::get('raid', 'RaidController@index');
     Route::post('/register', 'AuthController@register');
     Route::post('/login', 'AuthController@login');
     Route::post('/logout', 'AuthController@logout');
