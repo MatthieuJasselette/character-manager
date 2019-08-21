@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Character;
+use App\Http\Resources\CharacterResource;
+use App\Http\Resources\CharacterCollection;
 use Illuminate\Http\Request;
 
 class CharacterController extends Controller
@@ -12,17 +14,18 @@ class CharacterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): CharacterCollection
     {
-        //
+        return new CharacterCollection(Character::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
+       /**
+     * Display the specified resource.
      *
+     * @param  \App\Character  $character
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function show(Character $character)
     {
         //
     }
@@ -38,27 +41,6 @@ class CharacterController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Character  $character
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Character $character)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Character  $character
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Character $character)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
