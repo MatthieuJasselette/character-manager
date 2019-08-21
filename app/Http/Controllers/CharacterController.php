@@ -44,7 +44,7 @@ class CharacterController extends Controller
           'is_main'     => 'required',
         ]);
         
-        // $request['user_id'] = $request->user()->id;
+        $request['user_id'] = $request->user()->id;
 
         $character = Character::create($request->all());
 
