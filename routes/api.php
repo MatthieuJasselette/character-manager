@@ -23,6 +23,6 @@ Route::prefix('v1')->group(function(){
     Route::post('/register', 'AuthController@register');
     Route::post('/login', 'AuthController@login');
     Route::post('/logout', 'AuthController@logout');
-    Route::resource('/user', 'AuthController')
+    Route::apiResource('/user', 'AuthController')
         ->only('show', 'update');
 });
