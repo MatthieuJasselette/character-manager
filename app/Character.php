@@ -12,4 +12,9 @@ class Character extends Model
         "build_url",
         "is_main"
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
