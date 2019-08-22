@@ -7,10 +7,16 @@ use App\user;
 
 class UserController extends Controller
 {
+    public function index()
+    {
+        return User::paginate();
+    }
+
     public function show(User $user)
     {
         return $user;
     }
+    
     public function update(Request $request, User $user)
     {
         $user->update($request->all());
@@ -20,6 +26,6 @@ class UserController extends Controller
 
     public function __construct()
     {
-      $this->middleware('auth:api')->except(['show']);
+      $this->middleware('auth:api')->except(['index', 'show']);
     }
 }
