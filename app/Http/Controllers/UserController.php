@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\user;
 use App\Http\Resources\UserResource;
+use App\Http\Resources\UserCollection;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(): UserCollection
     {
-        return User::paginate();
+        return new UserCollection(User::paginate());
     }
 
     public function show(User $user): UserResource
