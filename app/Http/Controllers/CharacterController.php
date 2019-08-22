@@ -41,7 +41,7 @@ class CharacterController extends Controller
         $request->validate([
           'name'        => 'required',
           'build_url'   => 'required',
-          'is_main'     => 'required',
+        //   'is_main'     => 'required',
         ]);
         
         $request['user_id'] = $request->user()->id;

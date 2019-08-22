@@ -19,7 +19,7 @@ class CharacterResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'build_url' => $this->build_url,
-            'is_main' => $this->is_main
+            // 'is_main' => $this->is_main
         ];
     }
 }

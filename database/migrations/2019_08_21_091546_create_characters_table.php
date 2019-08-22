@@ -19,7 +19,7 @@ class CreateCharactersTable extends Migration
             $table->string("name");
             $table->string("description");
             $table->string("build_url");
-            $table->boolean("is_main");
+            // $table->boolean("is_main");
             $table->timestamps();
         });
     }

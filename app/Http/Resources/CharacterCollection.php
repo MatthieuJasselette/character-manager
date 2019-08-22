@@ -14,7 +14,6 @@ class CharacterCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        // return parent::toArray($request);
         return [
             'data' => CharacterResource::collection($this->collection)
         ];
