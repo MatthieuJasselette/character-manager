@@ -61,6 +61,11 @@ class CharacterController extends Controller
      */
     public function update(Request $request, Character $character): CharacterResource
     {
+        // code to replicate
+        if ($request->user()->id !== $character->user_id) {
+            return response()->json(['error' => 'You can only edit your own characters.'], 403);
+        }
+
         $character->update($request->all());
 
         return new CharacterResource($character);
@@ -72,8 +77,12 @@ class CharacterController extends Controller
      * @param  \App\Character  $character
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Character $character)
+    public function destroy(Request $request, Character $character)
     {
+        if ($request->user()->id !== $character->user_id) {
+            return response()->json(['error' => 'You can only delete your own characters.'], 403);
+        }
+
         $character->delete();
 
         return response()->json();
