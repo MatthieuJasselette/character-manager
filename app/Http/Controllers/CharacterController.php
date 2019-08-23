@@ -59,11 +59,13 @@ class CharacterController extends Controller
      * @param  \App\Character  $character
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Character $character): CharacterResource
+    public function update(Request $request, Character $character)
+    // public function update(Request $request, Character $character): CharacterResource
     {
         // code to replicate
         if ($request->user()->id !== $character->user_id) {
             return response()->json(['error' => 'You can only edit your own characters.'], 403);
+            // doesn't work because it doesn't return an instance of characterResource
         }
 
         $character->update($request->all());
