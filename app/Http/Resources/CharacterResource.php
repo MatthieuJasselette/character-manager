@@ -14,11 +14,21 @@ class CharacterResource extends JsonResource
      */
     public function toArray($request)
     {
+        // dd(123,$this->user->id);
+        // create an array with the desired data to return instead of the full $this->user_error
+        $filteredUser = [
+            'id' => $this->user->id,
+            'name' => $this->user->name,
+            'is_available' => $this->user->is_available
+        ];
+        
         return [
-            'user' => $this->user,
+            
             'name' => $this->name,
             'description' => $this->description,
             'build_url' => $this->build_url,
+            'user' => $filteredUser,
+            // 'user' => $this->user,
             // 'is_main' => $this->is_main
         ];
     }
