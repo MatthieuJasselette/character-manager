@@ -13,9 +13,8 @@ class RaidController extends Controller
     {
         $user = User::where('is_available', '=',1)
             ->where('main_char_id', '!=', NULL)
-            // ->mainCharacter()
+            ->with('mainCharacter')
             ->get();
-        
         
         return new UserCollection($user);
 
