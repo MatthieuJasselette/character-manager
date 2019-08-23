@@ -26,7 +26,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'email_verified_at'
     ];
 
     /**
@@ -41,11 +41,6 @@ class User extends Authenticatable implements JWTSubject
     public function character()
     {
         return $this->hasMany(Character::class);
-    }
-
-    public function mainCharacter()
-    {
-        return $this->hasMany(Character::class)->where('id', '=', 'main_char_id');
     }
 
     public function getJWTIdentifier()
