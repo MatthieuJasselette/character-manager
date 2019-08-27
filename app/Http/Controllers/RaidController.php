@@ -18,7 +18,7 @@ class RaidController extends Controller
             ->where('users.is_available', '=', 1)
             ->whereRaw('users.main_char_id = characters.id')
             ->get();
-
+        // dd($character);
         return new CharacterCollection($character);
     }
 }
