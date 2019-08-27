@@ -212,4 +212,5 @@ put /character/:id {name, decription, build_url}
 
 del /character/:id
 **Requires Authorization**
+
 `[]`
