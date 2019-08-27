@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Character::class, function (Faker $faker) {
     return [
-        'user_id'       => $faker->numberBetween($min = 1, $max = 6),
+        'user_id'       => $faker->uuid,
         'name'          => $faker->firstName,
         'description'   => $faker->sentence($nbWords = 6, $variableNbWords = true),
         'build_url'     => $faker->url,
