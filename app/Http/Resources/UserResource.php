@@ -14,11 +14,21 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
+        // $characters = $this->character;
+        // $filteredCharacters = foreach ($characters as $character) {
+        //     return [
+        //     'id' => $this->character->id,
+        //     'name' => $this->character->name,
+        //     'description' => $this->character->description
+        //     ];
+        // }
+
         return [
-            'name' => $this->name,
-            'is_available' => $this->is_available,
-            'main_char_id' => $this->main_char_id,
-            'characters' => $this->character
+            'id'            => $this->id,
+            'name'          => $this->name,
+            'is_available'  => $this->is_available,
+            'main_char_id'  => $this->main_char_id,
+            'characters'    =>  $this->character
         ];
     }
 }

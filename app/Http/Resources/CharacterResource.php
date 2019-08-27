@@ -21,11 +21,11 @@ class CharacterResource extends JsonResource
         ];
         
         return [
-            
-            'name' => $this->name,
-            'description' => $this->description,
-            'build_url' => $this->build_url,
-            'user' => $filteredUsers,
+            'id'            => $this->id,
+            'name'          => $this->name,
+            'description'   => $this->description,
+            'build_url'     => $this->build_url,
+            'user'          => $filteredUsers,
         ];
     }
 }
