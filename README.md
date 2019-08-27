@@ -10,10 +10,99 @@ Content-type application/json
 ## Characters
 
 get /character
+
+```javascript
+{
+    "data": [
+        {
+            "id": "32dccaec-f52f-4811-87cf-efb39e6cb737",
+            "name": "Némé Bear",
+            "description": "Amazing support scrapper",
+            "build_url": "http://gw2skills.net/editor/?PeAYDAA-e",
+            "user": {
+                "id": "12586014-a87a-4ace-906f-e28397ab8f71",
+                "name": "Nemetruc",
+                "is_available": 1
+            }
+        },
+    ],
+    "links": {
+        "first": "http://localhost:8000/api/v1/character?page=1",
+        "last": "http://localhost:8000/api/v1/character?page=1",
+        "prev": null,
+        "next": null
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "path": "http://localhost:8000/api/v1/character",
+        "per_page": 15,
+        "to": 3,
+        "total": 3
+    }
+}
+```
+
 get /character/:id
+
+```javascript
+{
+    "data": {
+        "id": "32dccaec-f52f-4811-87cf-efb39e6cb737",
+        "name": "Némé Bear",
+        "description": "Amazing support scrapper",
+        "build_url": "http://gw2skills.net/editor/?PeAYDAA-e",
+        "user": {
+            "id": "12586014-a87a-4ace-906f-e28397ab8f71",
+            "name": "Nemetruc",
+            "is_available": 1
+        }
+    }
+}
+```
+
 post /character {name, description, build_url}
+**Requires Authorization Type : Bearer Token**
+
+```javascript
+{
+    "data": {
+        "id": "cb291faf-3a5c-4acf-8b59-912904f1dfd3",
+        "name": "Nemeteo",
+        "description": "Hybrid Tempest",
+        "build_url": "http://gw2skills.net/editor/?PeAYDAA-e",
+        "user": {
+            "id": "12586014-a87a-4ace-906f-e28397ab8f71",
+            "name": "Nemetruc",
+            "is_available": 1
+        }
+    }
+}
+```
+
 put /character/:id {name, decription, build_url}
+**Requires Authorization Type : Bearer Token**
+
+```javascript
+{
+    "data": {
+        "id": "32dccaec-f52f-4811-87cf-efb39e6cb737",
+        "name": "Némé Bear",
+        "description": "Amazing support Firebrand",
+        "build_url": "http://gw2skills.net/editor/?PeAYDAA-e",
+        "user": {
+            "id": "12586014-a87a-4ace-906f-e28397ab8f71",
+            "name": "Nemetruc",
+            "is_available": 1
+        }
+    }
+}
+```
+
 del /character/:id
+**Requires Authorization Type : Bearer Token**
+`[]`
 
 ## Users
 
@@ -85,3 +174,4 @@ get /user/:id
 ```
 
 put /user/:id {name, email, is_available, main_char_id}
+**Requires Authorization Type : Bearer Token**
