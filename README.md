@@ -214,3 +214,25 @@ del /character/:id
 **Requires Authorization**
 
 `[]`
+
+## Raid
+
+get /raid ; returns the main character of currently available users
+
+```javascript
+{
+    "data": [
+        {
+            "id": "6bf64ec7-9655-4015-a3de-ee8f90dab22a",
+            "name": "NemeBear",
+            "description": "Support firebrand",
+            "build_url": "http://gw2skills.net/editor/?PeAYDAA-e",
+            "user": {
+                "id": "38371527-59c3-4a6b-ad35-346e7ab3a27d",
+                "name": "Nemetruc",
+                "is_available": 1
+            }
+        }
+    ]
+}
+```
