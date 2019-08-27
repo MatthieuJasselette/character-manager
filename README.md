@@ -5,8 +5,10 @@
 ```
 endpoint : /api/v1
 headers :
-  Accept application/json
-  Content-type application/json
+  Accept  application/json
+  Content-type  application/json
+Authorization:
+  Type    Bearer Token
 ```
 
 ## Characters
@@ -65,7 +67,7 @@ get /character/:id
 ```
 
 post /character {name, description, build_url}
-**Requires Authorization Type : Bearer Token**
+**Requires Authorization**
 
 ```javascript
 {
@@ -84,7 +86,7 @@ post /character {name, description, build_url}
 ```
 
 put /character/:id {name, decription, build_url}
-**Requires Authorization Type : Bearer Token**
+**Requires Authorization**
 
 ```javascript
 {
@@ -103,7 +105,7 @@ put /character/:id {name, decription, build_url}
 ```
 
 del /character/:id
-**Requires Authorization Type : Bearer Token**
+**Requires Authorization**
 `[]`
 
 ## Users
@@ -176,4 +178,4 @@ get /user/:id
 ```
 
 put /user/:id {name, email, is_available, main_char_id}
-**Requires Authorization Type : Bearer Token**
+**Requires Authorization**
