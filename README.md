@@ -2,10 +2,12 @@
 
 # api documentation
 
+```
 endpoint : /api/v1
 headers :
-Accept application/json
-Content-type application/json
+  Accept application/json
+  Content-type application/json
+```
 
 ## Characters
 
