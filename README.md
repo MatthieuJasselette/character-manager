@@ -210,7 +210,7 @@ put /character/:id {name, decription, build_url}
 }
 ```
 
-del /character/:id
+delete /character/:id
 **Requires Authorization**
 
 `[]`
