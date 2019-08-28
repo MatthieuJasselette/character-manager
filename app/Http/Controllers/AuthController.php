@@ -9,6 +9,12 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
+        if($request->is_available == true){
+            $request->is_available = 1;
+        } elseif ($request->is_available == false) {
+            $request->is_available = 0;
+        }
+
         $user = User::create([
             'name'      => $request->name,
             'email'     => $request->email,
