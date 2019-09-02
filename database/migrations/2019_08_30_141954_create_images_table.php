@@ -14,7 +14,7 @@ class CreateImagesTable extends Migration
     public function up()
     {
         Schema::create('images', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->uuid('id')->unique();
             $table->uuid('user_id');
             $table->string('name');/*->default('default_logo.png'); ???*/
 // define a default image to allow profile creation without having to pick an img
