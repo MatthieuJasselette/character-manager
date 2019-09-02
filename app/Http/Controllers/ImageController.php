@@ -57,14 +57,13 @@ class ImageController extends Controller
     
     public function destroy(Request $request, Image $image)
     {
-        dd($image)->get();
-        // $image is undefined
+        // dd($request->user()->id."/".$image->user_id); // corresponds
         // $this->repository->destroy($request, $image);
         if ($request->user()->id !== $image->user_id) {
             return response()->json(['error' => 'You can only delete your own image.'], 403);
         }
   
-        $images->delete();
+        $image->delete();
 
         return response()->json("Your image was successfully removed.");
     }
