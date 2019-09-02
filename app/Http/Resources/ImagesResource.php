@@ -14,9 +14,6 @@ class ImagesResource extends JsonResource
      */
     public function toArray($request)
     {
-        // return [
-        //     "image" => $this->media->getFullUrl() //fails; call function on null
-        // ];
         return [
             'id'        => $this->id,
             'name'      => $this->name,
