@@ -21,7 +21,6 @@
       $image = new Images;
       $image->name = $path;
       $image->user_id = $request->user_id;
-      // dd($image); -> works
-      $request->user()->images()->save($image); //fails ; images() is undefined
+      $request->user()->images()->save($image);
      }
     }

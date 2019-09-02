@@ -39,7 +39,7 @@ class ImageController extends Controller
 
         $this->repository->store($request);
 
-        return response()->json();
+        return response()->json("Your image was successfully stored.");
     }
 
     /**
