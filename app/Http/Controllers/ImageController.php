@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Image;
 use Illuminate\Http\Request;
 use App\Repositories\ImageRepository;
+use Illuminate\Support\Facades\Storage;
 // use App\Http\Resources\ImageResource;
 // use App\Http\Resources\ImageCollection;
 
@@ -48,7 +49,8 @@ class ImageController extends Controller
         if ($request->user()->id !== $image->user_id) {
             return response()->json(['error' => 'You can only delete your own image.'], 403);
         }
-  
+        Storage::disk('public')->delete(['images/'.$image->name, 'thumbs/'.$image->name]);
+
         $image->delete();
 
         return response()->json("Your image was successfully removed.");
