@@ -51,11 +51,21 @@ class ImageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Images $images
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    
+    public function destroy(Request $request, Images $images)
     {
-        //
+        dd($images);
+        // $image is undefined
+        // $this->repository->destroy($request, $image);
+        if ($request->user()->id !== $images->user_id) {
+            return response()->json(['error' => 'You can only delete your own image.'], 403);
+        }
+  
+        $images->delete();
+
+        return response()->json("Your image was successfully removed.");
     }
 }
