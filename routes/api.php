@@ -25,6 +25,6 @@ Route::prefix('v1')->group(function(){
     Route::post('/logout', 'AuthController@logout');
     Route::apiResource('/user', 'UserController')
         ->only('index', 'show', 'update');
-    Router::apiResource('/image', 'ImageController')
-        ->only('show', 'post', 'update', 'delete');
+    Route::apiResource('/image', 'ImageController')
+        ->only('show', 'post', 'update', 'destroy');
 });
