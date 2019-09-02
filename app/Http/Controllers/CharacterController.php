@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class CharacterController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('auth:api')->except(['index', 'show']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -41,7 +46,6 @@ class CharacterController extends Controller
         $request->validate([
           'name'        => 'required',
           'build_url'   => 'required',
-        //   'is_main'     => 'required',
         ]);
         
         $request['user_id'] = $request->user()->id;
@@ -81,6 +85,7 @@ class CharacterController extends Controller
      */
     public function destroy(Request $request, Character $character)
     {
+        dd($character);
         if ($request->user()->id !== $character->user_id) {
             return response()->json(['error' => 'You can only delete your own characters.'], 403);
         }
@@ -88,10 +93,5 @@ class CharacterController extends Controller
         $character->delete();
 
         return response()->json();
-    }
-
-    public function __construct()
-    {
-      $this->middleware('auth:api')->except(['index', 'show']);
     }
 }
