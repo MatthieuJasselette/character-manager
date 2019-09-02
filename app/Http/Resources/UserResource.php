@@ -22,6 +22,10 @@ class UserResource extends JsonResource
         //     'description' => $this->character->description
         //     ];
         // }
+        $filteredImage = [
+            'id'  => $this->images->id,
+            'name'  => $this->images->name
+        ];
 
         return [
             'id'            => $this->id,
@@ -30,7 +34,7 @@ class UserResource extends JsonResource
             'is_available'  => $this->is_available,
             'main_char_id'  => $this->main_char_id,
             'characters'    => $this->character,
-            'image'         -> $this->image //fails ; cannot convert object to string
+            'image'         => $filteredImage // seems to work
         ];
     }
 }
