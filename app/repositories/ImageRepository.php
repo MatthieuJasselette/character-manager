@@ -24,4 +24,19 @@
           $image->user_id = $request->user_id;
           $request->user()->image()->save($image);
       }
+
+      public function update($request, $image)
+      {
+        // dd($request->image. " /\ " . $image); // runs
+          // Save image
+          $path = basename ($request->image->store('images'));
+
+          // Save thumb
+          $image = InterventionImage::make ($request->image)->widen (500)->encode ();
+          Storage::put ('thumbs/' . $path, $image);
+
+          // Save in base
+        //   $request->user()->image()->save($image);
+        Image::whereRaw('id = $image->id')->update(['name' -> $image->name]);
+      }
   }

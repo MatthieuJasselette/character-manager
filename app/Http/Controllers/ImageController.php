@@ -37,6 +37,22 @@ class ImageController extends Controller
         return response()->json("Your image was successfully stored.");
     }
 
+    public function update(Request $request, Image $image)
+    {
+        // dd($request->user()->id. " /\ " . $image); //runs
+        // displays similar data because psotman doesn't allow formdata
+        // for update -> needt to find a way to send file via raw submit
+        if ($request->user()->id !== $image->user_id) {
+            return response()->json(['error' => 'You can only update your own image.'], 403);
+        }
+
+        // $this->destroy($request, $image); // runs
+        
+        $this->repository->update($request, $image);
+
+        return response()->json("Your image was successfully updated.");
+    }
+
     /**
      * Remove the specified resource from storage.
      *

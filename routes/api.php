@@ -26,5 +26,5 @@ Route::prefix('v1')->group(function(){
     Route::apiResource('/user', 'UserController')
         ->only('index', 'show', 'update');
     Route::apiResource('/image', 'ImageController')
-        ->only('store', 'destroy');
+        ->only('store', 'update', 'destroy');
 });
