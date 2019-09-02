@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Images;
 use Illuminate\Http\Request;
 use App\Repositories\ImageRepository;
-use App\Http\Resources\ImagesResource;
-use App\Http\Resources\ImagesCollection;
+// use App\Http\Resources\ImagesResource;
+// use App\Http\Resources\ImagesCollection;
 
 class ImageController extends Controller
 {
@@ -15,6 +15,7 @@ class ImageController extends Controller
     public function __construct(ImageRepository $repository)
     {
         $this->repository = $repository;
+        $this->middleware('auth:api');
     }
 
     /**
@@ -22,12 +23,9 @@ class ImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index():ImagesCollection
+    public function index()
     {
-        // $images = $repository->getAllImages ();
-
-
-        return new ImagesCollection(Images::paginate());
+        // return new ImagesCollection(Images::paginate());
     }
 
     /**
@@ -54,9 +52,10 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Images $images): ImagesResource
+    // public function show(Images $images)
+    public function show(Images $images)
     {
-        return new ImagesResource($images);
+        // return new ImagesResource($images); // fails, return empty object
     }
 
     /**
