@@ -2,7 +2,7 @@
 
   namespace App\Repositories;
 
-  use App\Images;
+  use App\Image;
   use Illuminate\Http\Request;
   use Illuminate\Support\Facades\Storage;
   use Intervention\Image\Facades\Image as InterventionImage;
@@ -19,18 +19,18 @@
           Storage::put ('thumbs/' . $path, $image);
 
           // Save in base
-          $image = new Images;
+          $image = new Image;
           $image->name = $path;
           $image->user_id = $request->user_id;
-          $request->user()->images()->save($image);
+          $request->user()->image()->save($image);
       }
       
-      // public function destroy(Request $request, Images $images)
+      // public function destroy(Request $request, Image $image)
       // {
-      //     if ($request->user()->id !== $images->user_id) {
+      //     if ($request->user()->id !== $image->user_id) {
       //         return response()->json(['error' => 'You can only delete your own image.'], 403);
       //     }
 
-      //     $images->delete();
+      //     $image->delete();
       // }
   }

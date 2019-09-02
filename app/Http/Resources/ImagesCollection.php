@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class ImagesCollection extends ResourceCollection
+class ImageCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -15,7 +15,7 @@ class ImagesCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'data' => ImagesResource::collection($this->collection)
+            'data' => ImageResource::collection($this->collection)
         ];
     }
 }

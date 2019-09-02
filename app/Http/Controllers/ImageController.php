@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Images;
+use App\Image;
 use Illuminate\Http\Request;
 use App\Repositories\ImageRepository;
-// use App\Http\Resources\ImagesResource;
-// use App\Http\Resources\ImagesCollection;
+// use App\Http\Resources\ImageResource;
+// use App\Http\Resources\ImageCollection;
 
 class ImageController extends Controller
 {
@@ -51,16 +51,16 @@ class ImageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Images $images
+     * @param  \App\Image $image
      * @return \Illuminate\Http\Response
      */
     
-    public function destroy(Request $request, Images $images)
+    public function destroy(Request $request, Image $image)
     {
-        dd($images);
+        dd($image)->get();
         // $image is undefined
         // $this->repository->destroy($request, $image);
-        if ($request->user()->id !== $images->user_id) {
+        if ($request->user()->id !== $image->user_id) {
             return response()->json(['error' => 'You can only delete your own image.'], 403);
         }
   
