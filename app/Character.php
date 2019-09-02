@@ -12,7 +12,6 @@ class Character extends Model
         "name",
         "description",
         "build_url",
-        // "is_main"
     ];
 
     public function user()
