@@ -80,6 +80,7 @@ class CharacterController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Character  $character
      * @return \Illuminate\Http\Response
      */
