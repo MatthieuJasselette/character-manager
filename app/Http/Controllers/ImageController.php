@@ -8,7 +8,7 @@ use App\Repositories\ImageRepository;
 class ImageController extends Controller
 {
     protected $repository;
-    
+
     public function __construct(ImageRepository $repository)
     {
         $this->repository = $repository;
@@ -25,16 +25,6 @@ class ImageController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -42,7 +32,14 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'image' => 'required|image|max:2000',
+        ]);
+        $request['user_id'] = $request->user()->id;
+
+        $this->repository->store($request);
+
+        return response()->json();
     }
 
     /**
@@ -52,17 +49,6 @@ class ImageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
     {
         //
     }
