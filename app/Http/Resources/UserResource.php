@@ -29,7 +29,8 @@ class UserResource extends JsonResource
             'email'         => $this->email,
             'is_available'  => $this->is_available,
             'main_char_id'  => $this->main_char_id,
-            'characters'    =>  $this->character
+            'characters'    => $this->character,
+            'image'         -> $this->image //fails ; cannot convert object to string
         ];
     }
 }
