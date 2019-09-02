@@ -24,7 +24,7 @@ class UserResource extends JsonResource
         // }
         $filteredImage = [
             'id'  => $this->images->id,
-            'name'  => 'http://localhost:8000/thumbs/'.$this->images->name
+            'image_url'  => 'http://localhost:8000/thumbs/'.$this->images->name
 //  !important, change the endpoint to whatever adress the api is actually deployed
         ];
 
