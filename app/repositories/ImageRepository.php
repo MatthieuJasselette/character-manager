@@ -24,13 +24,4 @@
           $image->user_id = $request->user_id;
           $request->user()->image()->save($image);
       }
-      
-      // public function destroy(Request $request, Image $image)
-      // {
-      //     if ($request->user()->id !== $image->user_id) {
-      //         return response()->json(['error' => 'You can only delete your own image.'], 403);
-      //     }
-
-      //     $image->delete();
-      // }
   }
