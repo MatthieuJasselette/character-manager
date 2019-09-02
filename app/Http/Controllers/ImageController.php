@@ -19,16 +19,6 @@ class ImageController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        // return new ImagesCollection(Images::paginate());
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -44,18 +34,6 @@ class ImageController extends Controller
         $this->repository->store($request);
 
         return response()->json("Your image was successfully stored.");
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function show(Images $images)
-    public function show(Images $images)
-    {
-        // return new ImagesResource($images); // fails, return empty object
     }
 
     /**
