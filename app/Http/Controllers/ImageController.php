@@ -28,31 +28,14 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->files);
         $request->validate([
             'file' => 'required|image|max:2000',
         ]);
         $request['user_id'] = $request->user()->id;
 
-        $this->repository->store($request, $this->endPoint);
-
-        return response()->json("Your image was successfully stored.");
-    }
-
-    public function update(Request $request, Image $image)
-    {
-        dd($request. " /\ " . $image); //runs
-        // displays similar data because psotman doesn't allow formdata
-        // for update -> needt to find a way to send file via raw submit
-        if ($request->user()->id !== $image->user_id) {
-            return response()->json(['error' => 'You can only update your own image.'], 403);
-        }
-
-        $this->destroy($request, $image); // runs
-        
         $this->repository->store($request);
 
-        return response()->json("Your image was successfully updated.");
+        return response()->json("Your image was successfully stored.");
     }
 
     /**
@@ -67,9 +50,10 @@ class ImageController extends Controller
         if ($request->user()->id !== $image->user_id) {
             return response()->json(['error' => 'You can only delete your own image.'], 403);
         }
-        $image->name = str_replace($this->endPoint, "", $image->name);
-        // to change !
-        Storage::disk('public')->delete(['images/'.$image->name, 'thumbs/'.$image->name]);
+
+        if($image->name !== 'default_logo.png'){
+            Storage::disk('public')->delete(['images/'.$image->name, 'thumbs/'.$image->name]);
+        }
 
         $image->delete();
 

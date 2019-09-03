@@ -16,7 +16,7 @@ class ImageResource extends JsonResource
     {
         return [
             'id'        => $this->id,
-            'name'      => $this->name,
+            'name'      => 'http://localhost:8000/thumbs/' . $this->name,
             'user_id'   => $this->user_id
         ];
     }

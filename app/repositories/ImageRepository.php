@@ -9,9 +9,8 @@
 
   class ImageRepository
   {
-      public function store($request, $endPoint)
+      public function store($request)
       {
-        //   dd($request->file);
           // Save image
           $path = basename ($request->file->store('images'));
 
@@ -21,25 +20,8 @@
 
           // Save in base
           $image = new Image;
-          $image->name = $endPoint.$path;
-        //   to change !
+          $image->name = $path;
           $image->user_id = $request->user_id;
           $request->user()->image()->save($image);
-      }
-
-      public function update($request, $image)
-      {
-        // dd($request->image. " /\ " . $image); // runs
-          // Save image
-          $path = basename ($request->image->store('images'));
-
-          // Save thumb
-          $image = InterventionImage::make ($request->image)->widen (500)->encode ();
-          Storage::put ('thumbs/' . $path, $image);
-
-          // Save in base
-        //   $request->user()->image()->save($image);
-        $image->name = 'http://localhost:8000/thumbs/'.$image->name;
-        Image::whereRaw('id = $image->id')->update(['name' -> $image->name]);
       }
   }
