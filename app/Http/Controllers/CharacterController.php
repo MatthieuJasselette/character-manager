@@ -84,7 +84,6 @@ class CharacterController extends Controller
      */
     public function destroy(Request $request, Character $character)
     {
-        dd($character);
         if ($request->user()->id !== $character->user_id) {
             return response()->json(['error' => 'You can only delete your own characters.'], 403);
         }
