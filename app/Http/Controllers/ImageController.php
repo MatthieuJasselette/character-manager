@@ -47,9 +47,9 @@ class ImageController extends Controller
             return response()->json(['error' => 'You can only update your own image.'], 403);
         }
 
-        // $this->destroy($request, $image); // runs
+        $this->destroy($request, $image); // runs
         
-        $this->repository->update($request, $image);
+        $this->repository->store($request);
 
         return response()->json("Your image was successfully updated.");
     }
@@ -67,6 +67,7 @@ class ImageController extends Controller
             return response()->json(['error' => 'You can only delete your own image.'], 403);
         }
         $image->name = str_replace($this->endPoint, "", $image->name);
+        // to change !
         Storage::disk('public')->delete(['images/'.$image->name, 'thumbs/'.$image->name]);
 
         $image->delete();
