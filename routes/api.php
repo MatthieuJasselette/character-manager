@@ -24,7 +24,7 @@ Route::prefix('v1')->group(function(){
     Route::post('/login', 'AuthController@login');
     Route::post('/logout', 'AuthController@logout');
     Route::apiResource('/user', 'UserController')
-        ->only('index', 'show', 'update');
+        ->only('index', 'show', 'update', 'destroy');
     Route::apiResource('/image', 'ImageController')
         ->only('store', 'update', 'destroy');
 });
