@@ -21,6 +21,7 @@
           // Save in base
           $image = new Image;
           $image->name = $endPoint.$path;
+        //   to change !
           $image->user_id = $request->user_id;
           $request->user()->image()->save($image);
       }
