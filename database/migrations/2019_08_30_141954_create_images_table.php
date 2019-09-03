@@ -16,9 +16,9 @@ class CreateImagesTable extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->uuid('id')->unique();
             $table->uuid('user_id');
-            $table->string('name');/*->default('default_logo.png'); ???*/
-// define a default image to allow profile creation without having to pick an img
+            $table->string('name');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
