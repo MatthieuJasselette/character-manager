@@ -17,6 +17,7 @@ class ImageController extends Controller
     {
         $this->repository = $repository;
         $this->middleware('auth:api');
+        $this->endPoint = "http://localhost:8000/thumbs/";
     }
 
     /**
@@ -32,7 +33,7 @@ class ImageController extends Controller
         ]);
         $request['user_id'] = $request->user()->id;
 
-        $this->repository->store($request);
+        $this->repository->store($request, $this->endPoint);
 
         return response()->json("Your image was successfully stored.");
     }
@@ -65,7 +66,7 @@ class ImageController extends Controller
         if ($request->user()->id !== $image->user_id) {
             return response()->json(['error' => 'You can only delete your own image.'], 403);
         }
-        $image->name = str_replace("http://localhost:8000/thumbs/", "", $image->name);
+        $image->name = str_replace($this->endPoint, "", $image->name);
         Storage::disk('public')->delete(['images/'.$image->name, 'thumbs/'.$image->name]);
 
         $image->delete();

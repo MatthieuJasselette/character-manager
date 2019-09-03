@@ -9,7 +9,7 @@
 
   class ImageRepository
   {
-      public function store($request)
+      public function store($request, $endPoint)
       {
           // Save image
           $path = basename ($request->image->store('images'));
@@ -20,7 +20,7 @@
 
           // Save in base
           $image = new Image;
-          $image->name = 'http://localhost:8000/thumbs/'.$path;
+          $image->name = $endPoint.$path;
           $image->user_id = $request->user_id;
           $request->user()->image()->save($image);
       }
