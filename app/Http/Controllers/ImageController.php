@@ -65,6 +65,7 @@ class ImageController extends Controller
         if ($request->user()->id !== $image->user_id) {
             return response()->json(['error' => 'You can only delete your own image.'], 403);
         }
+        $image->name = str_replace("http://localhost:8000/thumbs/", "", $image->name);
         Storage::disk('public')->delete(['images/'.$image->name, 'thumbs/'.$image->name]);
 
         $image->delete();

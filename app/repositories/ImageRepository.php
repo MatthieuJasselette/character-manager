@@ -20,7 +20,7 @@
 
           // Save in base
           $image = new Image;
-          $image->name = $path;
+          $image->name = 'http://localhost:8000/thumbs/'.$path;
           $image->user_id = $request->user_id;
           $request->user()->image()->save($image);
       }
