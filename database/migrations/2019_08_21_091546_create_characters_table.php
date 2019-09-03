@@ -20,7 +20,7 @@ class CreateCharactersTable extends Migration
             $table->string("description");
             $table->string("build_url");
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
