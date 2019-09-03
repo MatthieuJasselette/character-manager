@@ -19,6 +19,7 @@ class AuthController extends Controller
 
         $image = Image::create([
             'name'      => 'http://localhost:8000/thumbs/default_logo.png',
+            // pas bien !
             'user_id'   => $user->id
         ]);
 
