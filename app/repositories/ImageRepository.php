@@ -37,6 +37,7 @@
 
           // Save in base
         //   $request->user()->image()->save($image);
+        $image->name = 'http://localhost:8000/thumbs/'.$image->name;
         Image::whereRaw('id = $image->id')->update(['name' -> $image->name]);
       }
   }
