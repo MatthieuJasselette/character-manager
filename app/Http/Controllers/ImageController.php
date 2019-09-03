@@ -28,8 +28,9 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->files);
         $request->validate([
-            'image' => 'required|image|max:2000',
+            'file' => 'required|image|max:2000',
         ]);
         $request['user_id'] = $request->user()->id;
 
@@ -40,7 +41,7 @@ class ImageController extends Controller
 
     public function update(Request $request, Image $image)
     {
-        // dd($request->user()->id. " /\ " . $image); //runs
+        dd($request. " /\ " . $image); //runs
         // displays similar data because psotman doesn't allow formdata
         // for update -> needt to find a way to send file via raw submit
         if ($request->user()->id !== $image->user_id) {
