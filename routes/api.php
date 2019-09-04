@@ -20,11 +20,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::prefix('v1')->group(function(){
     Route::apiResource('character', 'CharacterController');
     Route::get('raid', 'RaidController@index');
-    Route::post('/register', 'AuthController@register');
-    Route::post('/login', 'AuthController@login');
-    Route::post('/logout', 'AuthController@logout');
-    Route::apiResource('/user', 'UserController')
+    Route::post('register', 'AuthController@register');
+    Route::post('login', 'AuthController@login');
+    Route::post('logout', 'AuthController@logout');
+    Route::apiResource('user', 'UserController')
         ->only('index', 'show', 'update', 'destroy');
-    Route::apiResource('/image', 'ImageController')
+    Route::apiResource('image', 'ImageController')
         ->only('store', 'update', 'destroy');
+    Route::apiResource('snapshot', 'RaidSnapshotController')
+        ->except('update');
 });
