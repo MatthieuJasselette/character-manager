@@ -20,26 +20,28 @@ class RaidSnapshotController extends Controller
         return $raidSnapshots;
     }
 
-    public function show(RaidSnapshot $raidSnapshot): RaidSnapshotResource
+    public function show($id)
     {
-        // dd($raidSnapshot);
-        return new RaidSnapshotResource ($raidSnapshot);
+       return $snap = RaidSnapshot::find($id);
+      
+      //  return new RaidSnapshotResource($id);
     }
 
     public function store(Request $request)
     {
-        // $required->validate([
-        //     'snapshot' => 'required'
-        // ]);
+        $request->validate([
+            'snapshot' => 'required'
+        ]);
 
         $raidSnapshot = RaidSnapshot::create($request->all());
 
         return $raidSnapshot;
     }
 
-    public function destroy(RaidSnapshot $raidSnapshot)
+    public function destroy($id)
     {
-        $raidSnapshot->delete();
+
+        RaidSnapshot::find($id)->delete();
 
         return response()->json();
     }
