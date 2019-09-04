@@ -15,9 +15,9 @@ class RaidSnapshotResource extends JsonResource
     public function toArray($request)
     {
         return [
-           'id'         => $this->id,
-           'snapshot'   => $this->snapshot,
-           'date'       => $this->created_at
+            'id'        => $this->id,
+            'snapshot'  => $this->snapshot,
+            'date'      => $this->created_at
         ];
     }
 }

@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 class RaidSnapshot extends Model
 {
     protected $fillable = [
-        "snapshot"
+        "snapshot",
     ];
 
     protected static function boot()

@@ -22,7 +22,11 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $user->update($request->all());
-        
+        if($user->is_available === true){
+            $user->is_available = 1;
+        } elseif ($user->is_available === false) {
+            $user->is_available = 0;
+        }
         return $user;
     }
 

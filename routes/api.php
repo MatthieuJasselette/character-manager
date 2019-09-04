@@ -27,6 +27,6 @@ Route::prefix('v1')->group(function(){
         ->only('index', 'show', 'update', 'destroy');
     Route::apiResource('image', 'ImageController')
         ->only('store', 'update', 'destroy');
-    Route::apiResource('snapshot', 'RaidSnapshotController')
+    Route::apiResource('raidsnapshot', 'RaidSnapshotController')
         ->except('update');
 });

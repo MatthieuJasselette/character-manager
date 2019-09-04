@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\RaidSnapshot;
 use Illuminate\Http\Request;
-use App\Http\Resources\RaidSnapshotResource ;
-use App\Http\Resources\RaidSnapshotCollection ;
+use App\Http\Resources\RaidSnapshotResource;
+use App\Http\Resources\RaidSnapshotCollection;
 
 class RaidSnapshotController extends Controller
 {
@@ -14,34 +14,32 @@ class RaidSnapshotController extends Controller
       $this->middleware('auth:api')->except(['index', 'show']);
     }
 
-    public function index()
+    public function index(): RaidSnapshotCollection
     {
-        $raidSnapshots = RaidSnapshot::all();
-        return $raidSnapshots;
+        return new RaidSnapshotCollection(RaidSnapshot::paginate());
     }
 
-    public function show($id)
+    public function show(RaidSnapshot $raidsnapshot): RaidSnapshotResource
     {
-       return $snap = RaidSnapshot::find($id);
-      
-      //  return new RaidSnapshotResource($id);
+        return new RaidSnapshotResource($raidsnapshot);
     }
 
-    public function store(Request $request)
+    public function store(Request $request): RaidSnapshotResource
     {
         $request->validate([
-            'snapshot' => 'required'
+          'snapshot'        => 'required',
         ]);
+        
+        $request['user_id'] = $request->user()->id;
 
-        $raidSnapshot = RaidSnapshot::create($request->all());
+        $Raidsnapshot = RaidSnapshot::create($request->all());
 
-        return $raidSnapshot;
+        return new RaidSnapshotResource($Raidsnapshot);
     }
 
-    public function destroy($id)
+    public function destroy( RaidSnapshot $raidsnapshot)
     {
-
-        RaidSnapshot::find($id)->delete();
+        $raidsnapshot->delete();
 
         return response()->json();
     }
