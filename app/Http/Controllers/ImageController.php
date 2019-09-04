@@ -38,9 +38,29 @@ class ImageController extends Controller
         return response()->json("Your image was successfully stored.");
     }
 
+        /**
+     * Replace the specified resource from storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Image $image
+     * @return \Illuminate\Http\Response
+     */
+
+    public function update(Request $request, Image $image)
+    {
+        $request->validate([
+            'file' => 'required|image|max:2000',
+        ]);
+
+        $this->repository->update($request, $image);
+
+        return response()->json("Your image was successfully updated."); 
+    }
+
     /**
      * Remove the specified resource from storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Image $image
      * @return \Illuminate\Http\Response
      */
