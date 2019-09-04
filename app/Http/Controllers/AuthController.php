@@ -18,7 +18,7 @@ class AuthController extends Controller
          ]);
 
         $image = Image::create([
-            'name'      => 'default_logo.png',
+            'name'      => 'default_logo.jpg',
             'user_id'   => $user->id
         ]);
 

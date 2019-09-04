@@ -71,7 +71,7 @@ class ImageController extends Controller
             return response()->json(['error' => 'You can only delete your own image.'], 403);
         }
 
-        if($image->name !== 'default_logo.png'){
+        if($image->name !== 'default_logo.jpg'){
             Storage::disk('public')->delete(['images/'.$image->name, 'thumbs/'.$image->name]);
         }
 

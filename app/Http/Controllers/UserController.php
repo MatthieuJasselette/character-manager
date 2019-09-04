@@ -35,7 +35,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-
+        // doesn't delete stored img
         return response()->json();
     }
 

@@ -34,14 +34,12 @@
 
         // replace stored img & thumbs
             // delete old
-        if($oldImage->name !== 'default_logo.png'){
+        if($oldImage->name !== 'default_logo.jpg'){
             Storage::disk('public')->delete(['images/'.$oldImage->name, 'thumbs/'.$oldImage->name]);
         }
             // create new
-                // Save image
         $path = basename ($request->file->store('images'));
 
-                // Save thumb
         $image = InterventionImage::make ($request->file)->widen (500)->encode ();
         Storage::put ('thumbs/' . $path, $image);
 
