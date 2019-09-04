@@ -30,6 +30,19 @@ class UserController extends Controller
         return $user;
     }
 
+    /**
+    * Remove the specified resource from storage.
+    *
+    * @param  \App\Character  $character
+    * @return \Illuminate\Http\Response
+    */
+    public function destroy(User $user)
+    {
+        $user->delete();
+        // doesn't delete stored img
+        return response()->json();
+    }
+
     public function __construct()
     {
       $this->middleware('auth:api')->except(['index', 'show']);

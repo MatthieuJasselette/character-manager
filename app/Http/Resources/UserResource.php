@@ -14,14 +14,11 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
-        // $characters = $this->character;
-        // $filteredCharacters = foreach ($characters as $character) {
-        //     return [
-        //     'id' => $this->character->id,
-        //     'name' => $this->character->name,
-        //     'description' => $this->character->description
-        //     ];
-        // }
+        $filteredImage = [
+            'id'        => $this->image->id,
+            'name'      => 'http://localhost:8000/thumbs/' . $this->image->name,
+            'user_id'   => $this->image->user_id
+        ];
 
         return [
             'id'            => $this->id,
@@ -29,7 +26,8 @@ class UserResource extends JsonResource
             'email'         => $this->email,
             'is_available'  => $this->is_available,
             'main_char_id'  => $this->main_char_id,
-            'characters'    =>  $this->character
+            'characters'    => $this->character,
+            'image'         => $filteredImage
         ];
     }
 }

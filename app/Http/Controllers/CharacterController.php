@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class CharacterController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('auth:api')->except(['index', 'show']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -41,7 +46,6 @@ class CharacterController extends Controller
         $request->validate([
           'name'        => 'required',
           'build_url'   => 'required',
-        //   'is_main'     => 'required',
         ]);
         
         $request['user_id'] = $request->user()->id;
@@ -60,22 +64,21 @@ class CharacterController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Character $character)
-    // public function update(Request $request, Character $character): CharacterResource
     {
-        // code to replicate
         if ($request->user()->id !== $character->user_id) {
+
             return response()->json(['error' => 'You can only edit your own characters.'], 403);
-            // doesn't work because it doesn't return an instance of characterResource
         }
 
         $character->update($request->all());
 
-        return new CharacterResource($character);
+        return $character;
     }
 
     /**
      * Remove the specified resource from storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Character  $character
      * @return \Illuminate\Http\Response
      */
@@ -88,10 +91,5 @@ class CharacterController extends Controller
         $character->delete();
 
         return response()->json();
-    }
-
-    public function __construct()
-    {
-      $this->middleware('auth:api')->except(['index', 'show']);
     }
 }

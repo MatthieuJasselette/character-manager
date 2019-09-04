@@ -15,9 +15,10 @@ class CharacterResource extends JsonResource
     public function toArray($request)
     {
         $filteredUsers = [
-            'id' => $this->user->id,
-            'name' => $this->user->name,
-            'is_available' => $this->user->is_available
+            'id'            => $this->user->id,
+            'name'          => $this->user->name,
+            'is_available'  => $this->user->is_available,
+            'main_char_id'  => $this->user->main_char_id
         ];
         
         return [

@@ -44,6 +44,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Character::class);
     }
 
+    public function image()
+    {
+        return $this->hasOne(Image::class);
+    }
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
@@ -69,6 +74,11 @@ class User extends Authenticatable implements JWTSubject
         static::creating(function ($post) {
             $post->{$post->getKeyName()} = (string) Str::uuid();
         });
+
+        static::deleting(function($user) {
+            $user->character()->delete();
+            $user->image()->delete();
+       });
     }
 
     public function getIncrementing()
