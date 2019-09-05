@@ -65,7 +65,7 @@ class CharacterController extends Controller
      */
     public function update(Request $request, Character $character)
     {
-        if ($request->user()->id !== $character->user_id) {
+        if ($request->user()->id !== $character->user_id && !$request->user()->authorizeRoles(['admims'])) {
 
             return response()->json(['error' => 'You can only edit your own characters.'], 403);
         }
@@ -84,7 +84,7 @@ class CharacterController extends Controller
      */
     public function destroy(Request $request, Character $character)
     {
-        if ($request->user()->id !== $character->user_id) {
+        if ($request->user()->id !== $character->user_id && !$request->user()->authorizeRoles(['admims'])) {
             return response()->json(['error' => 'You can only delete your own characters.'], 403);
         }
 
