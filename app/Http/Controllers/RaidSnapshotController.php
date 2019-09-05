@@ -26,6 +26,7 @@ class RaidSnapshotController extends Controller
 
     public function store(Request $request): RaidSnapshotResource
     {
+        $request->user()->authorizeRoles(['admims']);
         $request->validate([
           'snapshot'        => 'required',
         ]);
@@ -39,6 +40,7 @@ class RaidSnapshotController extends Controller
 
     public function destroy( RaidSnapshot $raidsnapshot)
     {
+        $request->user()->authorizeRoles(['admims']);
         $raidsnapshot->delete();
 
         return response()->json();

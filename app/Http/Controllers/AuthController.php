@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Image;
+use App\Role;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -22,6 +23,9 @@ class AuthController extends Controller
             'password'      => $request->password,
             'is_available'  => $request->is_available
          ]);
+         $user
+            ->roles()
+            ->attach(Role::where('name', 'mims')->first());
 
         $image = Image::create([
             'name'      => 'default_logo.jpg',
