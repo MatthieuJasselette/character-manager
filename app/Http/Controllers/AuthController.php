@@ -34,7 +34,8 @@ class AuthController extends Controller
 
         $token = auth()->login($user);
         $id = $user->id;
-        return $this->respondWithToken($token, $id);
+        $role = $user->roles->first()->name;
+        return $this->respondWithToken($token, $id, $role);
     }
 
     public function login(Request $request)
@@ -46,7 +47,8 @@ class AuthController extends Controller
         }
         $user = User::where("email", "=", $request->email)->first();
         $id = $user->id;
-        return $this->respondWithToken($token, $id);
+        $role = $user->roles->first()->name;        
+        return $this->respondWithToken($token, $id, $role);
     }
 
     public function logout()
@@ -56,10 +58,11 @@ class AuthController extends Controller
         return response()->json(['message' => 'Successfully logged out']);
     }
 
-    protected function respondWithToken($token, $id)
+    protected function respondWithToken($token, $id, $role)
     {
         return response()->json([
             'id'            => $id,
+            'role'          => $role,
             'access_token'  => $token,
             'token_type'    => 'bearer',
             'expires_in'    => auth()->factory()->getTTL() * 60
