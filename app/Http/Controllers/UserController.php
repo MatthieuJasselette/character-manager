@@ -22,11 +22,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $user->update($request->all());
-        if($user->is_available === true){
-            $user->is_available = 1;
-        } elseif ($user->is_available === false) {
-            $user->is_available = 0;
-        }
+        
         return $user;
     }
 
@@ -36,8 +32,9 @@ class UserController extends Controller
     * @param  \App\Character  $character
     * @return \Illuminate\Http\Response
     */
-    public function destroy(User $user)
+    public function destroy(Request $request, User $user)
     {
+        $request->user()->authorizeRoles(['admims']);
         $user->delete();
         // doesn't delete stored img
         return response()->json();
