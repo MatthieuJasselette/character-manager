@@ -21,8 +21,11 @@ class UserController extends Controller
     
     public function update(Request $request, User $user)
     {
+        if ($request->user()->id !== $user->id && !$request->user()->authorizeRoles(['admims'])) {
+            return response()->json(['error' => 'You can only delete your own characters.'], 403);
+        }
         $user->update($request->all());
-        
+
         return $user;
     }
 
