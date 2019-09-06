@@ -52,11 +52,14 @@ class DashboardController extends Controller
     public function updateRole(Request $request, User $user)
     {
       $request->user()->authorizeRoles(['admims']);
+
       $validRequest = $request->validate([
         'role' => ['required',
         Rule::in(['admims', 'mims'])]
       ]);
+
       $role = Role::where('name', $validRequest["role"])->first()->id;
+      
       $user->roles()->sync([$role]);
 
       return response()->json('User permissions set to '.$validRequest["role"]); 
