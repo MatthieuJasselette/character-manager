@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Character;
 use App\RaidSnapshot;
+use App\Role;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class DashboardController extends Controller
 {
@@ -51,11 +53,12 @@ class DashboardController extends Controller
     {
       $request->user()->authorizeRoles(['admims']);
       $validRequest = $request->validate([
-        'role' => 'required|digits_between:1,2'
+        'role' => ['required',
+        Rule::in(['admims', 'mims'])]
       ]);
-      // dd($validRequest["role"]);
-      $user->roles()->sync([$validRequest["role"]]);
+      $role = Role::where('name', $validRequest["role"])->first()->id;
+      $user->roles()->sync([$role]);
 
-      return response()->json('User permissions set to lvl '.$validRequest["role"]); 
+      return response()->json('User permissions set to '.$validRequest["role"]); 
     }
 }
