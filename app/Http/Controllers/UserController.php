@@ -41,10 +41,7 @@ class UserController extends Controller
 
         $user->update($request->all());
 
-        if($request->user()->authorizeRoles(['admims']))
-        {
-            $user->roles()->sync([$request->role]);
-        }
+
 
         return $user;
     }
