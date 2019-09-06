@@ -29,4 +29,8 @@ Route::prefix('v1')->group(function(){
         ->only('store', 'update', 'destroy');
     Route::apiResource('raidsnapshot', 'RaidSnapshotController')
         ->except('update');
+    Route::get('dashboard-users', 'DashboardController@users');
+    Route::get('dashboard-characters', 'DashboardController@characters');
+    Route::get('dashboard-snapshots', 'DashboardController@snapshots');
+    Route::put('dashboard-role/{user}', 'DashboardController@updateRole');
 });
