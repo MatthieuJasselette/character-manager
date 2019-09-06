@@ -28,12 +28,13 @@ class RaidSnapshotController extends Controller
     {
         $request->user()->authorizeRoles(['admims']);
         $request->validate([
-          'snapshot'        => 'required',
+        //   'snapshot'        => 'required',
         ]);
-        
-        $request['user_id'] = $request->user()->id;
 
-        $Raidsnapshot = RaidSnapshot::create($request->all());
+        $Raidsnapshot = new RaidSnapshot(
+        );
+        $Raidsnapshot->snapshot = serialize($request->snapshot);
+        $Raidsnapshot->save();
 
         return new RaidSnapshotResource($Raidsnapshot);
     }
