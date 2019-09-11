@@ -39,7 +39,7 @@ class RaidSnapshotController extends Controller
         return new RaidSnapshotResource($Raidsnapshot);
     }
 
-    public function destroy( RaidSnapshot $raidsnapshot)
+    public function destroy(Request $request, RaidSnapshot $raidsnapshot)
     {
         $request->user()->authorizeRoles(['admims']);
         $raidsnapshot->delete();
