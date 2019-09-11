@@ -27,11 +27,6 @@
 
       public function update($request, $oldImage)
       {
-        //   check for authorization
-        if ($request->user()->id !== $oldImage->user_id) {
-            return response()->json(['error' => 'You can only delete your own image.'], 403);
-        }
-
         // replace stored img & thumbs
             // delete old
         if($oldImage->name !== 'default_logo.jpg'){

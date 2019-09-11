@@ -17,7 +17,6 @@ class ImageController extends Controller
     {
         $this->repository = $repository;
         $this->middleware('auth:api');
-        $this->endPoint = "http://localhost:8000/thumbs/";
     }
 
     /**
@@ -48,6 +47,12 @@ class ImageController extends Controller
 
     public function update(Request $request, Image $image)
     {
+        // dd($request->user()->authorizeRoles(['admims']));
+
+        if ($request->user()->id !== $image->user_id  && !$request->user()->authorizeRoles(['admims'])) {
+            return response()->json(['error' => 'You can only update your own image.'], 403);
+        }
+
         $request->validate([
             'file' => 'required|image|max:2000',
         ]);
@@ -67,7 +72,7 @@ class ImageController extends Controller
     
     public function destroy(Request $request, Image $image)
     {
-        if ($request->user()->id !== $image->user_id) {
+        if ($request->user()->id !== $image->user_id  && !$request->user()->authorizeRoles(['admims'])) {
             return response()->json(['error' => 'You can only delete your own image.'], 403);
         }
 
