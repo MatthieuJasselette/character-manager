@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Character;
 use App\RaidSnapshot;
+use App\Http\Resources\RaidSnapshotCollection;
 use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -38,14 +39,12 @@ class DashboardController extends Controller
 
     }
 
-    // index snapshots raw
-    public function snapshots(Request $request)
+    // index snapshots formatted ; need unserialization
+    public function snapshots(Request $request): RaidSnapshotCollection
     {
         $request->user()->authorizeRoles(['admims']);
-        
-        $snapshots = RaidSnapshot::paginate();
 
-        return $snapshots;
+        return new RaidSnapshotCollection(RaidSnapshot::paginate());
 
     }
 

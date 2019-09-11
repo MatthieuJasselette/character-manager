@@ -16,7 +16,7 @@ class RaidSnapshotResource extends JsonResource
     {
         return [
             'id'        => $this->id,
-            'snapshot'  => $this->snapshot,
+            'composition'  => unserialize($this->snapshot),
             'date'      => $this->created_at
         ];
     }
