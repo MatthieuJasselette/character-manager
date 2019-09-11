@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->boolean('is_available');
             $table->uuid('main_char_id')->nullable();
+            $table->uuid('image_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
